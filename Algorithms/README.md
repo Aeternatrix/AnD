@@ -1,5 +1,5 @@
 # Algorithms
-How I would implement algorithms I. Not necessarily the best implementations; probably the worst in fact. My only goal, I suppose is to not go n!...
+How I would implement algorithms. Not necessarily the best implementations; probably the worst in fact. My only goal, I suppose is to not go n!...
 
 ## Peak Finding
 A toy problem, the goal is to find if an element in an xd-array is a peak.
