@@ -5,7 +5,7 @@ It has been an age and a half since I half learnt about Alogrithms and Data Stru
 
 In so doing, I think I focused more on the data structure side of the class and much less on the algorithm side. Now, more than a few years later of not practicing/internalising algorithm things™, I believe I have trouble remembering how to do them. Thus I have decided to do something about that and go look for some algorithms and data structures to make (probably terrible) implementations of.
 
-I have long since lost whatever resources I had for the Algorithms and Data Structures class I took; luckily, there's online resources easily accessible to give me starting points. To which I will credit as I implement (below).
+I have long since lost whatever resources I had for the Algorithms and Data Structures class I took; luckily, there's online resources easily accessible to give me starting points. To which I will credit as I implement (below); if there's something uncredited, it's because the description of it was from memory.
 
 For now, I only plan to do implementations in C/C++, maybe C# and/or Java if I'm feeling 'high-level'. I tried Assembly the other day for the first time since a 30 minute last-class-of-the-semester practical in Embeded Systems and enjoyed it more than I remembered. So, add Assembly if I'm feeling particularly *spicy*.
 <s>Never JavaScript; that shite's completely unreadable</s>
@@ -13,4 +13,3 @@ For now, I only plan to do implementations in C/C++, maybe C# and/or Java if I'm
 ## Credits
  - [MIT Open Course Ware: Introduction To Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)
     - Peak Finding
-

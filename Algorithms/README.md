@@ -1,6 +1,11 @@
 # Algorithms
 How I would implement algorithms. Not necessarily the best implementations; probably the worst in fact. My only goal, I suppose is to not go n!...
 
+## Binary Search
+Given a sorted array, find a given value.
+This is a classic™ divide and conquer algorithm.
+We can do the slow thing of searching from left→right or right→left which is $\Theta(n)$, or we can look at the middle, ask if our value is smaller or larger than the found value, look at the middle value of that quarter, etc etc; classic Divide and Conquer— $\Theta(\ln n)$
+
 ## Peak Finding
 A toy problem, the goal is to find if an element in an xd-array is a peak.
 The element is a peak if it is greater or equal to its neighbours. (Elements outside the array are considered to be 0)
