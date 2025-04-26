@@ -55,5 +55,5 @@ $T_t(x,y,z)=\Theta(1)+\Theta(\ln x)\times\Theta(\ln y)\times\Theta(\ln z)=\Theta
 
 ### XD Array
 Given that the algorithms all look eerily similar, it should be possible to abstract out a generic algorithm of log^d n.
-$T_d(n_1,n_2,\timess,n_d)=\Theta(1)+\Theta(\ln n_1)\times\Theta(\ln n_2)\times\timess\times\Theta(\ln n_d)=\Theta(\ln n_1\times\ln n_2\times\timess\times\ln n_d)$
+$T_d(n_1,n_2,\cdots,n_d)=\Theta(1)+\Theta(\ln n_1)\times\Theta(\ln n_2)\times\cdots\times\Theta(\ln n_d)=\Theta(\ln n_1\times\ln n_2\times\cdots\times\ln n_d)$
 
