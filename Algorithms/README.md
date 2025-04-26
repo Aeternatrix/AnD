@@ -33,7 +33,7 @@ The element is a peak if it is greater or equal to its neighbours. (Elements out
         - Super Easy to implement
     - Cons:
         - Extremely Slow, comparitively.
-            - $T(x,y)=\Theta(1)+\Theta(1)\cdot\Theta(x\cdot y)=\Theta(x\cdot y)$
+            - $T(x,y)=\Theta(1)+\Theta(1)\times\Theta(x\times y)=\Theta(x\times y)$
         - Will ignore any peak it comes across before it global maximum.
 2. As with 1D, we look at a middle element and cut smaller sides. Use the 1D Algorithm to find a peak in a row, then compare it's column neighbours, and cut the smaller side.
     - Pros:
@@ -41,19 +41,19 @@ The element is a peak if it is greater or equal to its neighbours. (Elements out
     - Cons:
         - Not as easy
             - $T_1(x)=\Theta(\lg x)$
-            - $T_2(x,y)=\Theta(1)+T_1(x)\cdot T_2(x,y/2)$
-            - $T_t(x,y)=\Theta(1)+\Theta(\ln x)\cdot\Theta(\ln y)=\Theta(\ln x\cdot \ln y)$
+            - $T_2(x,y)=\Theta(1)+T_1(x)\times T_2(x,y/2)$
+            - $T_t(x,y)=\Theta(1)+\Theta(\ln x)\times\Theta(\ln y)=\Theta(\ln x\times \ln y)$
 
 
 ### 3D Array
 Same as 2D, look at a slice, look at the peak in that slice using the 2D algorithm, cut off a section if it's smaller.
 $T_1(x)=\Theta(\ln x)$<br>
-$T_2(x,y)=\Theta(1)+T_1(x)\cdot T_2(x,y/2)$<br>
-$T_3(x,y,z)=\Theta(1)+T_1(x,y)\cdot T_2(x,y,z/2)$<br>
-$T_t(x,y,z)=\Theta(1)+\Theta(\ln x)\cdot\Theta(\ln y)\cdot\Theta(\ln z)=\Theta(\ln x\cdot\ln y\cdot\ln z)$
+$T_2(x,y)=\Theta(1)+T_1(x)\times T_2(x,y/2)$<br>
+$T_3(x,y,z)=\Theta(1)+T_1(x,y)\times T_2(x,y,z/2)$<br>
+$T_t(x,y,z)=\Theta(1)+\Theta(\ln x)\times\Theta(\ln y)\times\Theta(\ln z)=\Theta(\ln x\times\ln y\times\ln z)$
 
 
 ### XD Array
 Given that the algorithms all look eerily similar, it should be possible to abstract out a generic algorithm of log^d n.
-$T_d(n_1,n_2,\cdots,n_d)=\Theta(1)+\Theta(\ln n_1)\cdot\Theta(\ln n_2)\times\cdots\times\Theta(\ln n_d)=\Theta(\ln n_1\cdot\ln n_2\times\cdots\times\ln n_d)$
+$T_d(n_1,n_2,\timess,n_d)=\Theta(1)+\Theta(\ln n_1)\times\Theta(\ln n_2)\times\timess\times\Theta(\ln n_d)=\Theta(\ln n_1\times\ln n_2\times\timess\times\ln n_d)$
 
