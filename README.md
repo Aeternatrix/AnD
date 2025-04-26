@@ -8,9 +8,9 @@ In so doing, I think I focused more on the data structure side of the class and 
 I have long since lost whatever resources I had for the Algorithms and Data Structures class I took; luckily, there's online resources easily accessible to give me starting points. To which I will credit as I implement (below).
 
 For now, I only plan to do implementations in C/C++, maybe C# and/or Java if I'm feeling 'high-level'. I tried Assembly the other day for the first time since a 30 minute last-class-of-the-semester practical in Embeded Systems and enjoyed it more than I remembered. So, add Assembly if I'm feeling particularly *spicy*.
-<ins>Never JavaScript; that shite's completely unreadable</ins>
+<s>Never JavaScript; that shite's completely unreadable</s>
 
 ## Credits
- - [MIT Open Course Ware: Introduction To Algorithms] (https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)
+ - [MIT Open Course Ware: Introduction To Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)
     - Peak Finding
 
