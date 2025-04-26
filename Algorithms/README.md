@@ -47,9 +47,9 @@ The element is a peak if it is greater or equal to its neighbours. (Elements out
 
 ### 3D Array
 Same as 2D, look at a slice, look at the peak in that slice using the 2D algorithm, cut off a section if it's smaller.
-$T_1(x)=\Theta(\ln x)$
-$T_2(x,y)=\Theta(1)+T_1(x)\cdot T_2(x,y/2)$
-$T_3(x,y,z)=\Theta(1)+T_1(x,y)\cdot T_2(x,y,z/2)$
+$T_1(x)=\Theta(\ln x)$<br>
+$T_2(x,y)=\Theta(1)+T_1(x)\cdot T_2(x,y/2)$<br>
+$T_3(x,y,z)=\Theta(1)+T_1(x,y)\cdot T_2(x,y,z/2)$<br>
 $T_t(x,y,z)=\Theta(1)+\Theta(\ln x)\cdot\Theta(\ln y)\cdot\Theta(\ln z)=\Theta(\ln x\cdot\ln y\cdot\ln z)$
 
 
