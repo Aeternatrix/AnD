@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 #define ARR_COUNT(arr) (sizeof(arr) / sizeof(arr[0]))
 
@@ -98,10 +99,10 @@ three_dimensional_peak(int* arr, int width, int height, int depth, int *rtx, int
     }
 }
 
-void multi_dimensional_chain(int *arr, int dimensions, int* sizes, int** outs) {
+void multi_dimensional_peak(int *arr, int dimensions, int* sizes, int* outs) {
     static int here = 0;
     if (dimensions == 1) {
-        one_dimensional_peak(arr, sizes[0], outs[0]);
+        one_dimensional_peak(arr, sizes[0], &outs[0]);
         return;
     }
     int dim = 1;
@@ -110,106 +111,132 @@ void multi_dimensional_chain(int *arr, int dimensions, int* sizes, int** outs) {
     }
     int loc = sizes[dimensions-1]/2;
     int* mid_arr = &arr[dim*loc];
-    multi_dimensional_chain(mid_arr, dimensions-1, sizes, outs);
+    multi_dimensional_peak(mid_arr, dimensions-1, sizes, outs);
     if (sizes[dimensions-1] == 1) {
         return;
-    } else if (arr[loc*dim + *outs[dimensions-2]] < arr[(loc-1)*dim + *outs[dimensions-2]]) {
+    } else if (arr[loc*dim + outs[dimensions-2]] < arr[(loc-1)*dim + outs[dimensions-2]]) {
         int tmp_dim = sizes[dimensions-1];
         sizes[dimensions-1] = tmp_dim-loc;
-        multi_dimensional_chain(arr, dimensions, sizes, outs);
+        multi_dimensional_peak(arr, dimensions, sizes, outs);
         sizes[dimensions-1] = tmp_dim;
-    } else if (arr[loc*dim + *outs[dimensions-2]] < arr[(loc+1)*dim + *outs[dimensions-2]]) {
+    } else if (arr[loc*dim + outs[dimensions-2]] < arr[(loc+1)*dim + outs[dimensions-2]]) {
         int tmp_dim = sizes[dimensions-1];
         sizes[dimensions-1] = tmp_dim-loc;
-        multi_dimensional_chain(arr, dimensions, sizes, outs);
+        multi_dimensional_peak(arr, dimensions, sizes, outs);
         sizes[dimensions-1] = tmp_dim;
-        *outs[dimensions-1] += dim;
+//	        outs[dimensions-1] += dim;
     } else {
-        *outs[dimensions-1] = loc;
+        outs[dimensions-1] = loc;
     }
 }
 
-void multi_dimensional_peak(int*arr, int dimensions, ...) {
-    va_list args;
-    va_start(args, dimensions);
-    int sizes[10] = {};
-    for (int i = 0; i < dimensions; i++) {
-        sizes[i] = va_arg(args, int);
+//	void multi_dimensional_peak(int*arr, int dimensions, ...) {
+//	    va_list args;
+//	    va_start(args, dimensions);
+//	    int sizes[10] = {};
+//	    for (int i = 0; i < dimensions; i++) {
+//	        sizes[i] = va_arg(args, int);
+//	    }
+//	    int* outs[10] = {};
+//	    for (int i = 0; i < dimensions; i++) {
+//	        outs[i] = va_arg(args, int*);
+//	    }
+//	
+//	    va_end(args);
+//	
+//	    multi_dimensional_chain(arr, dimensions, sizes, outs);
+//	
+//	}
+
+int char_to_num(char c) {
+    if (c >= '0' && c <= '9') {
+        return c - '0';
     }
-    int* outs[10] = {};
-    for (int i = 0; i < dimensions; i++) {
-        outs[i] = va_arg(args, int*);
-    }
-
-    va_end(args);
-
-    multi_dimensional_chain(arr, dimensions, sizes, outs);
-
+    return -1;
 }
 
 int main(int argc, char** argv) {
-        //--t accept user input maybe?
-//	    if (argc < 2) {
-//	        printf("Usage: %s <dimensions> <array>\n", argv[0]);
-//	        printf("array can be comma deliniated or space delinitated.");
-//	        return 0;
-//	    }
-    //-- 25 randomly generated numbers between 1 to 100
-    int arr1[] = {1, 6, 65, 74, 92, 14, 3, 1, 97, 43, 27, 91, 77, 28, 66, 15, 59, 17, 48, 68, 30, 43, 69,  2, 64};
-    int arr2[] = {
-        15, 96, 17, 80, 58,
-        66, 77, 44, 62, 24,
-        54, 37, 43, 25, 88,
-        45, 98, 43, 13, 18,
-        36, 76, 20, 38, 40
-    };
-    //-- 125 somewhat randomly generated numbers between 1 to 100
-    int arr3[] = {
-         1,   6, 65, 74, 92,
-        14,   3,  1, 97, 43,
-        27,  91, 77, 28, 66,
-        15,  59, 17, 48, 68,
-        30,  43, 69,  2, 64,
-
-        15,  96, 17, 80, 58,
-        66,  77, 44, 62, 24,
-        54,  37, 43, 25, 88,
-        45,  98, 43, 13, 18,
-        36,  76, 20, 38, 40,
-
-        45, 100, 91, 31,  5,
-        95,  21, 18, 55, 45,
-        28,  49, 43, 29, 40,
-        72,  38, 16, 97, 10,
-        44,  65, 18, 29, 34,
-
-        93,  55,  6, 69, 79,
-        77,  48, 44, 86, 80,
-        66,  30, 31, 32, 20,
-        97,  10, 93, 39, 15,
-        49,  72, 79, 76, 52,
-
-        57,  35, 72, 18, 36,
-        30,  96, 26, 65, 74,
-        83,  23, 89, 25, 38,
-        23,  89, 92, 69, 34,
-        70,  48, 75, 44, 59
-    };
-
-    int loc=-1;
-    one_dimensional_peak(arr1, ARR_COUNT(arr1), &loc);
-    printf("1D-Peak found @ %d, peak is %d\n", loc, arr1[loc]);
-
-    int loc_x=-1, loc_y=-1;
-    two_dimensional_peak(arr2, 5, 5, &loc_x, &loc_y);
-    printf("2D-Peak found @ %d, %d, peak is %d\n", loc_x, loc_y, arr2[loc_y*5+loc_x]);
+    if (argc < 3) {
+        printf("Usage: %s <dimensions> <array>\n", argv[0]);
+        printf("Dimensions should be <width>x<height>x<depth>... up to 10 dimensions.\n");
+        printf("Array should be comma delinitated. (Excess will be cut; or made 0)\n");
+        return 0;
+    }
     
-    int loc_w = -1, loc_h = -1, loc_d = -1;
-    three_dimensional_peak(arr3, 5, 5, 5, &loc_w, &loc_h, &loc_d);
-    printf("3D-Peak found @ %d, %d, %d, peak is %d\n", loc_w, loc_h, loc_d, arr3[loc_w+loc_h*5+loc_d*25]);
+    int sizes[10] = {};
+    int outputs[10] = {};
+    int dims = 0;
+    char dimensions = argv[1][0];
+    for (int itr=1; dimensions != '\0'; itr++) {
+        if (dimensions != 'x') {
+            int num = char_to_num(dimensions);
+            if (num < 0) {
+                printf("Incorrectly formatted dimensions.\n");
+                printf("Dimensions should be <width>x<height>x<depth>... up to 10 dimensions.\n");
+                return 0;
+            }
+            if (sizes[dims] == 0) {
+                sizes[dims] = num;
+            } else {
+                sizes[dims] = sizes[dims] * 10 + num;
+            }
+        } else dims++;
+        dimensions = argv[1][itr];
+    }
+    dims++;
 
-    loc_w = loc_h = loc_d = -1;
-    multi_dimensional_peak(arr3, 3, 5, 5, 5, &loc_w, &loc_h, &loc_d);
-    printf("XD-Peak found @ %d, %d, %d, peak is %d\n", loc_w, loc_h, loc_d, arr3[loc_w+loc_h*5+loc_d*25]);
+    printf("%d, %d, %d, %d\n", sizes[0], sizes[1], sizes[2], dims);
+
+
+    int element_len = 1;
+    for (int i=0; i<10;i++) {
+        if (sizes[i] == 0) break;
+        element_len *= sizes[i];
+    }
+    int* elements = calloc(element_len, sizeof(int));
+
+    int read = 0;
+    int ptr = 0;
+    char reader = argv[2][0];
+    while (read < element_len) {
+        if (reader == '\0') {
+            break;
+        } else if (reader != ',' && reader != '\n') {
+            int num = char_to_num(reader);
+            if (num < 0) {
+                printf("Incorrectly formatted array.\n");
+                printf("Array should be comma delinitated. (Excess will be cut; or made 0)\n");
+                return 0;
+            }
+            if (elements[read] == 0) {
+                elements[read] = num;
+            } else {
+                elements[read] = elements[read] * 10 + num;
+            }
+        } else read++;
+        reader = argv[2][++ptr];
+    }
+
+    multi_dimensional_peak(elements, dims, sizes, outputs);
+    int location = 
+        outputs[0] +
+        outputs[1] * sizes[0] +
+        outputs[2] * sizes[0] * sizes[1] + 
+        outputs[3] * sizes[0] * sizes[1] * sizes[2] + 
+        outputs[4] * sizes[0] * sizes[1] * sizes[2] * sizes[3] + 
+        outputs[5] * sizes[0] * sizes[1] * sizes[2] * sizes[3] * sizes[4] + 
+        outputs[6] * sizes[0] * sizes[1] * sizes[2] * sizes[3] * sizes[4] * sizes[5] + 
+        outputs[7] * sizes[0] * sizes[1] * sizes[2] * sizes[3] * sizes[4] * sizes[5] * sizes[6] + 
+        outputs[8] * sizes[0] * sizes[1] * sizes[2] * sizes[3] * sizes[4] * sizes[5] * sizes[6] * sizes[7] + 
+        outputs[9] * sizes[0] * sizes[1] * sizes[2] * sizes[3] * sizes[4] * sizes[5] * sizes[6] * sizes[7] * sizes[8];
+
+    printf("%dD-Peak found @ ", dims);
+    for(int itr=0; itr < 10; itr++) {
+        if (sizes[itr] == 0) break;
+        printf("%d, ", outputs[itr]);
+    }
+    printf("peak is %d {%d}\n", elements[location], location);
+
+    free(elements);
     return 0;
 }

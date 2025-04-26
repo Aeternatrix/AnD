@@ -43,4 +43,3 @@ Same as 2D, look at a slice, look at the peak in that slice using the 2D algorit
 
 ### XD Array
 Given that the algorithms all look eerily similar, it should be possible to abstract out a generic algorithm of log^d n.
-
