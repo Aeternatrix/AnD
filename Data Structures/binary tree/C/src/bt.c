@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define BIG 100
+
 typedef struct Node {
     int data;
     struct Node* left;
@@ -78,7 +80,36 @@ int bt_insert(Node* root, int data) {
     return -1;
 }
 
-int bt_delete_node(Node* root, Node* node) {
+/* 
+ * Helper Function
+ */
+static
+void bt_deepest_right_node(Node* root, Node** result, Node** parent) {
+    Node* tmp[BIG];
+    tmp[0] = root;
+    int ptr = 0, end = 1;
+    while (ptr != end) {
+        *result = tmp[ptr++];
+        if ((*result)->left != 0) tmp[end++] = (*result)->left;
+        if ((*result)->right != 0) tmp[end++] = (*result)->right;
+    }
+    *parent = tmp[(end >> 1) - 1];
+}
+
+/**
+ * Binary Tree Delete Node
+ *
+ * Note:
+ * - If the node targetted for deletion is in a different tree, it will delete the node from the root tree and copy it over the node tree
+ *
+ * Parameters:
+ * - Node* root: the root of the tree
+ * - Node* data: the data node to delete
+ * 
+ * Returns:
+ * - int: -1 on failure; 0 on success
+ */
+int bt_delete(Node* root, Node* node) {
     if (!root || !node) return -1;
     if (!root->left && !root->right) {
         if (root == node) {
@@ -89,14 +120,18 @@ int bt_delete_node(Node* root, Node* node) {
             return -1;
         }
     }
-    
-    //-- Do stuff™ later, is sleep time now
-
-    return -1;
+    Node* parent;
+    Node* replacement;
+    bt_deepest_right_node(root, &replacement, &parent);
+    node->data = replacement->data;
+    if (parent->right == replacement) parent->right = 0;
+    if (parent->left == replacement) parent->left = 0;
+    free(replacement);
+    return 0;
 }
 
 /**
- * Binary Tree Search
+ * Binary Tree Search by Data
  *
  * Parameters:
  * - Node* root: the root of the tree
@@ -114,6 +149,15 @@ Node* bt_search(Node* root, int data) {
     return bt_search(root->right, data);
 }
 
+static
+void bt_print_helper(Node* root) {
+    if (!root) return;
+
+    printf("%d ", root->data);
+    bt_print_helper(root->left);
+    bt_print_helper(root->right);
+}
+
 /**
  * Binary Tree Print Tree
  *
@@ -121,11 +165,12 @@ Node* bt_search(Node* root, int data) {
  * - Node* root: the root of the tree
  */
 void bt_print(Node* root) {
-    if (!root) return;
-
-    printf("%d ", root->data);
-    bt_print(root->left);
-    bt_print(root->right);
+    if (!root) {
+        printf("Invalid tree.\n");
+        return;
+    }
+    bt_print_helper(root);
+    printf("\n");
 }
 
 /**
@@ -140,36 +185,4 @@ void bt_free(Node* root) {
     bt_free(root->right);
 
     free(root);
-}
-
-//	delete(node) → deletes the node; I vaguely recall that you want to replace it with the right-most node, so that's what I'll do
-
-
-void print_debug(Node* root) {
-    if (!root) return;
-    printf("%p (%d):\t%p (%d)\t%p (%d)\n",
-            root,
-            root->data,
-            root->left,
-            (root->left ? root->left->data : 0),
-            root->right,
-            (root->right ? root->right->data : 0)
-            );
-}
-
-int main() {
-    Node* root = bt_create(1);
-    bt_insert(root, 2);
-    bt_insert(root, 3);
-    bt_insert(root, 4);
-    bt_insert(root, 5);
-    bt_insert(root, 6);
-    bt_insert(root, 7);
-    bt_insert(root, 8);
-    bt_insert(root, 9);
-    bt_insert(root, 10);
-    bt_insert(root, 11);
-    bt_print(root);
-
-    bt_free(root);
 }
