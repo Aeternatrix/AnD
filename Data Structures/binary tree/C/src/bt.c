@@ -16,7 +16,7 @@ typedef struct Node {
  * - int data: the data to be inserted
  * 
  * Returns:
- * - Node*: a referent to the created Node
+ * - Node*: a reference to the created Node
  */
 Node* bt_create(int data) {
     Node* node = malloc(sizeof(Node));
