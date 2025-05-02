@@ -3,11 +3,30 @@ How I would implement algorithms. Not necessarily the best implementations; prob
 
 ## Binary Search
 Given a sorted array, find a given value.
+
 This is a classic™ divide and conquer algorithm.
+
 We can do the slow thing of searching from left→right or right→left which is $\Theta(n)$, or we can look at the middle, ask if our value is smaller or larger than the found value, look at the middle value of that quarter, etc etc; classic Divide and Conquer— $\Theta(\ln n)$
+
+$T(1)=\Theta(1)$
+$T(n)=\Theta(1) + T(n/2)$
+$T(n)=\Theta(1) + \Theta(1) + T(n/4)$
+$\cdots$
+$T(n)=\Theta(1)\cdot i + T(n/{2^i})$
+$n/2^i=1$
+$n=2^i$
+$\log_2n=\log_2(2^i)$
+$\log_2n=i$
+$\therefore$
+$T(n)=\Theta(1)\cdot \log_2n + T(n/{2^{\log_2n}})$
+$T(n)=\log_2n + T(n/n)$
+$T(n)=\log_2n + T(1)$
+$T(n)=\log_2n + \Theta(1)$
+$T(n)=\log_2n$
 
 ## Peak Finding
 A toy problem, the goal is to find if an element in an xd-array is a peak.
+
 The element is a peak if it is greater or equal to its neighbours. (Elements outside the array are considered to be 0)
 
 ### 1D Array
