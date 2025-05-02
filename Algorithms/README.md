@@ -8,20 +8,20 @@ This is a classic™ divide and conquer algorithm.
 
 We can do the slow thing of searching from left→right or right→left which is $\Theta(n)$, or we can look at the middle, ask if our value is smaller or larger than the found value, look at the middle value of that quarter, etc etc; classic Divide and Conquer— $\Theta(\ln n)$
 
-$T(1)=\Theta(1)$
-$T(n)=\Theta(1) + T(n/2)$
-$T(n)=\Theta(1) + \Theta(1) + T(n/4)$
-$\cdots$
-$T(n)=\Theta(1)\cdot i + T(n/{2^i})$
-$n/2^i=1$
-$n=2^i$
-$\log_2n=\log_2(2^i)$
-$\log_2n=i$
-$\therefore$
-$T(n)=\Theta(1)\cdot \log_2n + T(n/{2^{\log_2n}})$
-$T(n)=\log_2n + T(n/n)$
-$T(n)=\log_2n + T(1)$
-$T(n)=\log_2n + \Theta(1)$
+$T(1)=\Theta(1)$<br>
+$T(n)=\Theta(1) + T(n/2)$<br>
+$T(n)=\Theta(1) + \Theta(1) + T(n/4)$<br>
+$\cdots$<br>
+$T(n)=\Theta(1)\cdot i + T(n/{2^i})$<br>
+$n/2^i=1$<br>
+$n=2^i$<br>
+$\log_2n=\log_2(2^i)$<br>
+$\log_2n=i$<br>
+$\therefore$<br>
+$T(n)=\Theta(1)\cdot \log_2n + T(n/{2^{\log_2n}})$<br>
+$T(n)=\log_2n + T(n/n)$<br>
+$T(n)=\log_2n + T(1)$<br>
+$T(n)=\log_2n + \Theta(1)$<br>
 $T(n)=\log_2n$
 
 ## Peak Finding
