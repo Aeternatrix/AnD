@@ -201,3 +201,17 @@ void rbt_free(Node* root) {
     rbt_free(root->right);
     free(root);
 }
+
+/*
+ * Red-Black Tree Search
+ *
+ * Recursively searches the tree for data
+ * - Returns 1 if data is in the tree, 0 if not
+ */
+int
+rbt_search(Node*root, int data) {
+    if (root->data == data) return 1;
+    if (data < root->data) return rbt_search(root->left, data);
+    if (data >= root->data) return rbt_search(root->right, data);
+    return 0;
+}
