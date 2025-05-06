@@ -13,6 +13,13 @@ typedef struct Node {
 
 static Node* rbt_post_fix(Node* node);
 
+
+/**
+ * Red-Black Tree Create
+ *
+ * Creates a new Red-Black Tree Node
+ * - Uses malloc()
+ */
 Node* rbt_create(int data, enum colour colour) {
     Node* node = malloc(sizeof(Node));
     node->data = data;
@@ -33,25 +40,6 @@ rbt_root(Node* node) {
     return rt;
 }
 
-// The goal is to get this
-//
-//   parent
-//      \
-//       \
-//      node
-//     /     \
-//    /       \
-//  child1   child2
-//
-// To look like this
-//
-//      node
-//      /   \
-//     /     \
-//  parent  child2
-//    \
-//     \
-//    child1
 static Node*
 rbt_left_rotate(Node* node) {
     Node* child = node->left;
@@ -74,7 +62,6 @@ rbt_left_rotate(Node* node) {
     return rbt_post_fix(parent);
 }
 
-// mirror of the above
 static Node*
 rbt_right_rotate(Node* node) {
     Node* child = node->right;
@@ -96,6 +83,11 @@ rbt_right_rotate(Node* node) {
     return rbt_post_fix(parent);
 }
 
+/*
+ * Red-Black Tree Insert
+ *
+ * Creates a new node and inserts it into the tree and then balances the tree
+ */
 Node* rbt_insert(Node* root, int data) {
     Node* node = rbt_create(data, RED);
     if (!root) {
@@ -109,12 +101,7 @@ Node* rbt_insert(Node* root, int data) {
         parent = current;
         if (data < current->data) {
             current = current->left;
-        } else if (data > current->data) {
-            current = current->right;
         } else {
-            //-- Overwrite other stuff™ in this node
-            //-- Not implemented in this version
-            //-- This branch is just a copy of data > current->data
             current = current->right;
         }
     }
@@ -131,8 +118,6 @@ Node* rbt_insert(Node* root, int data) {
     return rbt_post_fix(node);
 }
 
-// The goal is to make it so that the rb tree doesn't break any requirements
-// 
 static Node*
 rbt_post_fix(Node* node) {
     Node* parent = node->parent;
@@ -160,19 +145,12 @@ rbt_post_fix(Node* node) {
         uncle = grand_parent->left;
     }
 
-    //-- Case 1: Uncle and Parent are RED
-    //-- Invert the colour of the Uncle, Parent, and Grandparent
-    //-- Recurse on the Grandparent
-
     if (parent->colour == RED && uncle->colour == RED) {
         parent->colour = BLACK;
         uncle->colour = BLACK;
         grand_parent->colour = RED;
         return rbt_post_fix(grand_parent);
     }
-
-    //-- Case 2: Uncle is BLACK and Parent is RED
-    //-- Rotate to align
 
     if (parent->colour == RED && uncle->colour == BLACK) {
         if (p_left && !n_left) {
@@ -194,6 +172,12 @@ rbt_post_fix(Node* node) {
     __builtin_unreachable();
 }
 
+/*
+ * Red-Black Tree Print
+ *
+ * Prints the tree in order (smallest to largest)
+ * - Uses printf()
+ */
 void
 rbt_print(Node* root) {
     if (!root) return;
@@ -203,6 +187,13 @@ rbt_print(Node* root) {
     rbt_print(root->right);
 }
 
+
+/*
+ * Red-Black Tree Free
+ *
+ * Recursively frees the memory allocated with malloc
+ * - Uses free()
+ */
 void rbt_free(Node* root) {
     if (!root) return;
     rbt_free(root->left);
