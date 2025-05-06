@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum colour { NONE, RED, BLACK };
+enum colour { RBT_RED, RBT_BLACK };
 
 typedef struct Node {
     int data;
@@ -90,9 +90,9 @@ rbt_right_rotate(Node* node) {
  * Creates a new node and inserts it into the tree and then balances the tree
  */
 Node* rbt_insert(Node* root, int data) {
-    Node* node = rbt_create(data, RED);
+    Node* node = rbt_create(data, RBT_RED);
     if (!root) {
-        node->colour = BLACK;
+        node->colour = RBT_BLACK;
         return node;
     }
 
@@ -123,11 +123,11 @@ static Node*
 rbt_post_fix(Node* node) {
     Node* parent = node->parent;
     if (!parent) {
-        node->colour = BLACK;
+        node->colour = RBT_BLACK;
         return node;
     }
 
-    if (parent->colour == BLACK) {
+    if (parent->colour == RBT_BLACK) {
         return rbt_root(node);
     }
 
@@ -146,28 +146,30 @@ rbt_post_fix(Node* node) {
         uncle = grand_parent->left;
     }
 
-    if (parent->colour == RED && uncle->colour == RED) {
-        parent->colour = BLACK;
-        uncle->colour = BLACK;
-        grand_parent->colour = RED;
+    if (parent->colour == RBT_RED && (uncle ? uncle->colour : RBT_BLACK) == RBT_RED) {
+        parent->colour = RBT_BLACK;
+        uncle->colour = RBT_BLACK;
+        grand_parent->colour = RBT_RED;
         return rbt_post_fix(grand_parent);
     }
 
-    if (parent->colour == RED && uncle->colour == BLACK) {
+    if (parent->colour == RBT_RED && (uncle ? uncle->colour : RBT_BLACK) == RBT_BLACK) {
         if (p_left && !n_left) {
             return rbt_left_rotate(node);
         }
         if (p_left && n_left) {
-            parent->colour = BLACK;
-            grand_parent->colour = RED;
+            parent->colour = RBT_BLACK;
+            grand_parent->colour = RBT_RED;
             return rbt_right_rotate(node->parent);
         }
         if (!p_left && n_left) {
-            return rbt_left_rotate(node);
+            return rbt_right_rotate(node);
         }
-        parent->colour = BLACK;
-        grand_parent->colour = RED;
-        return rbt_right_rotate(node->parent);
+        if (!p_left && !n_left) {
+            parent->colour = RBT_BLACK;
+            grand_parent->colour = RBT_RED;
+            return rbt_left_rotate(node->parent);
+        }
     }
 
     __builtin_unreachable();
@@ -184,7 +186,7 @@ rbt_print(Node* root) {
     if (!root) return;
 
     rbt_print(root->left);
-    printf("%s%d\033[0m ", root->colour == BLACK ? "\033[37m" : "\033[31m", root->data);
+    printf("%s%d\033[0m ", root->colour == RBT_BLACK ? "\033[37m" : "\033[31m", root->data);
     rbt_print(root->right);
 }
 
