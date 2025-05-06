@@ -68,17 +68,18 @@ rbt_right_rotate(Node* node) {
     Node* parent = node->parent;
     Node* g_parent = parent->parent;
     
-    node->parent = parent->parent;
-    node->right = parent;
-    parent->parent = node;
     if (g_parent) {
-        if (parent == g_parent->right) {
-            g_parent->right = node;
-        } else g_parent->left = node;
+        if (parent == g_parent->left) {
+            g_parent->left = node;
+        } else g_parent->right = node;
     }
+    node->parent = g_parent;
 
-    parent->left = child;
+    parent->parent = node;
+    node->right = parent;
+
     child->parent = parent;
+    parent->left = child;
 
     return rbt_post_fix(parent);
 }
