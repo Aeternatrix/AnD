@@ -84,3 +84,16 @@ Node { data, colour, parent *Node, left *Node, right *Node }
 Post implementation notes:
 - Okay, I get the colouring somewhat. It's just to determine where to do the rotations to balance the tree, I think. I would need to implement a different self-balancing tree to be sure of that— which I might do after I do a map (the reason I did a red-black tree).
 
+# Map
+Maps! Everyone loves a good map. A Hash map especially, but I don't think there's much functional difference between a map and a hash map, just implementation differences. Being that a hashmap is faster and a map is better memory usage... don't quote me on that, however.
+
+Since C++ says a map under the hood is a Red-Black Tree, we'll reuse the above, with some minor changes.
+
+Node { key, data, colour, parent *Node, left *Node, right *Node }
+- create(key, data) → creates a node with data and empty children
+- insert(key, data) → inserts data into the tree
+- search(key) → returns the node of the data, if it exists
+- delete(key) → deletes the data from the tree, if it exists
+- print() → prints the tree
+- delete() → deletes the tree
+

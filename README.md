@@ -21,3 +21,6 @@ For now, I only plan to do implementations in C/C++, maybe C# and/or Java if I'm
     - [Data Structures and Algorithms: Red-Black Trees](https://www.eecs.umich.edu/courses/eecs380/ALG/red_black_op.html)
         - A very helpful series of images
     - [Red/Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+ - Map
+    - [std::map - cppreference.com](https://en.cppreference.com/w/cpp/container/map)
+    - As it is implemented with a Red-Black Tree; arguably the rest of the credits for Red-Black tree go here too
