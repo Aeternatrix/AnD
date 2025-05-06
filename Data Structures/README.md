@@ -97,3 +97,4 @@ Node { key, data, colour, parent *Node, left *Node, right *Node }
 - print() → prints the tree
 - delete() → deletes the tree
 
+For the key, I'm taking a string and converting it to a base37 number to store alphabetically; there are definitely better ways to convert the key, for example with `strcmp` but, I decided to do this instead.
