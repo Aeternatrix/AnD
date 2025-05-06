@@ -11,5 +11,13 @@ For now, I only plan to do implementations in C/C++, maybe C# and/or Java if I'm
 <s>Never JavaScript; that shite's completely unreadable</s>
 
 ## Credits
- - [MIT Open Course Ware: Introduction To Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)
-    - Peak Finding
+ - Peak Finding
+    - [MIT Open Course Ware: Introduction To Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)
+
+ - Red-Black Trees
+    - [std::map - cppreference.com](https://en.cppreference.com/w/cpp/container/map)
+        - Directing me to Red-Black Trees a la
+    - [Red–black tree - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
+    - [Data Structures and Algorithms: Red-Black Trees](https://www.eecs.umich.edu/courses/eecs380/ALG/red_black_op.html)
+        - A very helpful series of images
+    - [Red/Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)

@@ -60,3 +60,27 @@ The exposed methods should be something like:
 - print() → prints the tree
 - delete() → deletes the tree
 
+# Red-Black Tree
+We've seen the Binary Tree, we've seen the Binary Search Tree, and now we have the Red-Black Tree! Honestly, I was thinking of doing a map and then a hashmap, when I saw on cppreference that a map is usually implemented as Red-Black Trees, and went "Yeah, okay." A Red-Black tree, to my understanding, is a binary search tree that self-balances. I'll be honest, when I wrote a python implementation of this in class, I didn't understand the 'red-black' part of it— and I still don't.
+
+The requirements (copied straight from wikipedia) of a r-b tree are:
+1. Every node is either red or black.
+2. All null nodes are considered black.
+3. A red node does not have a red child.
+4. Every path from a given node to any of its leaf nodes goes through the same number of black nodes.
+5. (Conclusion) If a node N has exactly one child, the child must be red. If the child were black, its leaves would sit at a different black depth than N's null node (which is considered black by rule 2), violating requirement 4.
+
+The structure and accompanying methods are the same as the binary search tree.
+However, for my own ease, I'll include the node parent (I have to imagine that, due to the self-balancing and colouring, needing to know parents, this is the way it would really be done too— the wikipedia article soft confirms this, with the implementation; however, that's not how I would do it); I'll also store the colour; it's probably important... I guess I'll come back and state my opinion on its importance afterwards...
+
+Node { data, colour, parent *Node, left *Node, right *Node }
+- create(data) → creates a node with data and empty children
+- insert(data) → inserts data into the tree
+- search(data) → returns the node of the data, if it exists
+- delete(data) → deletes the data from the tree, if it exists
+- print() → prints the tree
+- delete() → deletes the tree
+
+Post implementation notes:
+- Okay, I get the colouring somewhat. It's just to determine where to do the rotations to balance the tree, I think. I would need to implement a different self-balancing tree to be sure of that— which I might do after I do a map (the reason I did a red-black tree).
+
