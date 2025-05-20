@@ -81,3 +81,6 @@ $T_t(x,y,z)=\Theta(1)+\Theta(\ln x)\times\Theta(\ln y)\times\Theta(\ln z)=\Theta
 Given that the algorithms all look eerily similar, it should be possible to abstract out a generic algorithm of log^d n.
 $T_d(n_1,n_2,\cdots,n_d)=\Theta(1)+\Theta(\ln n_1)\times\Theta(\ln n_2)\times\cdots\times\Theta(\ln n_d)=\Theta(\ln n_1\times\ln n_2\times\cdots\times\ln n_d)$
 
+## <s>Quick Sort</s> Merge Sort
+I have heard about Quick Sort here and there online; however, I could not say if I have ever seen it. From a description I recall of it, I thought it was Merge Sort. But, it turns out, what I thought was Merge Sort was Quick Sort... So... <s>changes title</s><br>
+Merge Sort! A good old (1945 according to google) algorithm for all your array sorting needs! A divide and conquer algorithm that splits your array into smaller arrays and sticky tapes (or merges, if you want) them back together.
