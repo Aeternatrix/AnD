@@ -24,3 +24,5 @@ For now, I only plan to do implementations in C/C++, maybe C# and/or Java if I'm
  - Map
     - [std::map - cppreference.com](https://en.cppreference.com/w/cpp/container/map)
     - As it is implemented with a Red-Black Tree; arguably the rest of the credits for Red-Black tree go here too
+ - Quick Sort
+    - I looked at a bunch of things, but [this](https://www.youtube.com/watch?v=Vtckgz38QHs) YouTube video is the one that made me understand what's up.
