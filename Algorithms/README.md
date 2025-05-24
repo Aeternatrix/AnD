@@ -84,3 +84,7 @@ $T_d(n_1,n_2,\cdots,n_d)=\Theta(1)+\Theta(\ln n_1)\times\Theta(\ln n_2)\times\cd
 ## <s>Quick Sort</s> Merge Sort
 I have heard about Quick Sort here and there online; however, I could not say if I have ever seen it. From a description I recall of it, I thought it was Merge Sort. But, it turns out, what I thought was Merge Sort was Quick Sort... So... <s>changes title</s><br>
 Merge Sort! A good old (1945 according to google) algorithm for all your array sorting needs! A divide and conquer algorithm that splits your array into smaller arrays and sticky tapes (or merges, if you want) them back together.
+
+## Quick Sort
+Quick Sort! The Merge Sort of my past! Or so I thought... looking into Quick Sort more, I really don't think it's what I thought... The sorting algorithm I'm thinking of is an inplace divide and conquer method, like Quick Sort, but from what I have found online, it's not Quick Sort... and now I'm going to find a list of sorting algorithms just to try and find the one I was thinking of.<br>
+Anyway, Quick Sort— An inplace sorting algorithm that's primary draw over a merge sort is that it uses less memory.
